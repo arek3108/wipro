@@ -53,6 +53,10 @@ public class LinksExtractor {
                 links.add(matcherTag.group(1));
             }
         }
+        return normalizeAndCreateURLs(links);
+    }
+
+    private Set<URL> normalizeAndCreateURLs(Set<String> links) {
         return links.stream()
                 .filter(s -> s.startsWith("//") || s.contains("://"))
                 .map(s1 -> s1.startsWith("//") ? "http:" + s1 : s1)
